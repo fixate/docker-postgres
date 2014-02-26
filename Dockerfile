@@ -1,4 +1,4 @@
-FROM phusion/baseimage
+FROM phusion/baseimage:0.9.8
 # Totes lifted from https://github.com/Painted-Fox/docker-postgresql
 MAINTAINER Stan Bondi <stan@fixate.it>
 
