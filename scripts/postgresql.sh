@@ -16,5 +16,5 @@ fi
 [[ -d /logs ]] || mkdir /logs
 chown -R postgres:postgres /logs
 
-su postgres -c '/usr/lib/postgresql/9.3/bin/postgres -D /etc/postgresql/9.3/main' >> /logs/postgres.log 2>> /logs/postgres.err
+exec /sbin/setuser postgres /usr/lib/postgresql/9.3/bin/postgres -D /etc/postgresql/9.3/main >> /logs/postgres.log 2>> /logs/postgres.err
 

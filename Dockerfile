@@ -1,6 +1,8 @@
-FROM ubuntu:12.04
+FROM phusion/baseimage
 # Totes lifted from https://github.com/Painted-Fox/docker-postgresql
 MAINTAINER Stan Bondi <stan@fixate.it>
+
+ENV HOME /root
 
 RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list && \
         apt-get update && \
@@ -19,11 +21,15 @@ RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main" > /etc
 
 # Decouple our data from our container.
 VOLUME ["/data"]
+VOLUME ["/logs"]
 
 # Add scripts
-ADD scripts/ /opt/fixate/
-RUN DATADIR="/data" /opt/fixate/setup_db.sh
+ADD scripts/ /tmp/docker/
+RUN DATADIR="/data" /tmp/docker/setup.sh
 
 EXPOSE 5432
 ENV DATADIR /data
-ENTRYPOINT ["/opt/fixate/pg_start.sh"]
+
+CMD ["/sbin/my_init"]
+
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

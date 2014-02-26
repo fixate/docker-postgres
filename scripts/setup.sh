@@ -25,3 +25,7 @@ su postgres -c "cp -R /var/lib/postgresql/9.3/main/* $DATADIR"
   su postgres -c 'psql -c "ALTER USER docker WITH PASSWORD '"'"'password'"'"'"'
 /etc/init.d/postgresql stop
 
+# Add rinit service entry
+mkdir -p /etc/service/postgresql
+cp -p /tmp/docker/postgresql.sh /etc/service/postgresql/run
+
