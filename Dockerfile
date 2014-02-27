@@ -25,10 +25,10 @@ VOLUME ["/logs"]
 
 # Add scripts
 ADD scripts/ /tmp/docker/
-RUN DATADIR="/data" /tmp/docker/setup.sh
+RUN PGDATA="/data" /tmp/docker/setup.sh
 
 EXPOSE 5432
-ENV DATADIR /data
+ENV PGDATA /data
 
 CMD ["/sbin/my_init"]
 
