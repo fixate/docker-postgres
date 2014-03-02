@@ -3,7 +3,7 @@ all: build
 .PHONY: all build push
 
 build:
-	docker build -rm -t fixate/postgres:9.3 .
+	docker build -rm -t fixate/postgresql:9.3 .
 
 push:
-	docker push fixate/postgres
+	docker push fixate/postgresql
