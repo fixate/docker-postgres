@@ -1,4 +1,5 @@
 #!/bin/bash
+set -eo pipefail
 
 [[ -z $PGDATA ]] && PGDATA=/var/postgres/data
 # Starts up postgresql within the container.
@@ -21,11 +22,14 @@ if [ ! "$(ls -A $PGDATA)" ]; then
   # Change this password or remove this user in production!
   su postgres -c 'psql -c "ALTER USER fixate WITH PASSWORD '"'"'password'"'"'"' || true
   /etc/init.d/postgresql stop
+else
+  echo "Postgres data in $PGDATA"
 fi
 
 [[ -z $LOGDIR ]] && LOGDIR=/var/postgresql/logs
-[[ -d $LOGDIR ]] || mkdir $LOGDIR
+[[ -d $LOGDIR ]] || mkdir -p $LOGDIR
 chown -R postgres:postgres $LOGDIR
+echo "Postgres logs in $LOGDIR"
 
-exec /sbin/setuser postgres /usr/lib/postgresql/9.3/bin/postgres -D /etc/postgresql/9.3/main >> /logs/postgres.log 2>> /logs/postgres.err
+exec /sbin/setuser postgres /usr/lib/postgresql/9.3/bin/postgres -D /etc/postgresql/9.3/main >> $LOGDIR/postgres.log 2>> $LOGDIR/postgres.err
 
