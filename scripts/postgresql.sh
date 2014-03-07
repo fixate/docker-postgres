@@ -1,7 +1,7 @@
 #!/bin/bash
 set -eo pipefail
 
-[[ -z $PGDATA ]] && PGDATA=/var/postgres/data
+[[ -z $PGDATA ]] && PGDATA=/var/postgresql/data
 # Starts up postgresql within the container.
 # test if PGDATA has content
 [[ -d $PGDATA ]] || mkdir -p $PGDATA

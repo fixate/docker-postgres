@@ -20,15 +20,15 @@ RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main" > /etc
         /etc/init.d/postgresql stop
 
 # Decouple our data from our container.
-# VOLUME ["/var/postgres/data"]
-# VOLUME ["/var/postgres/logs"]
+# VOLUME ["/var/postgresql/data"]
+# VOLUME ["/var/postgresql/logs"]
 
 # Add scripts
 ADD scripts/ /tmp/docker/
-RUN PGDATA="/var/postgres/data" /tmp/docker/setup.sh
+RUN PGDATA="/var/postgresql/data" /tmp/docker/setup.sh
 
 EXPOSE 5432
-ENV PGDATA /var/postgres/data
+ENV PGDATA /var/postgresql/data
 
 CMD ["/sbin/my_init"]
 
