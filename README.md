@@ -13,7 +13,12 @@ To run from docker index:
 
 ```shell
 First run:
-$ CONTAINER=$(docker run -name fixate_postgres fixate/postgresql)
+$ CONTAINER=$(docker run -d \
+             --name fixate_postgres \
+             -p 5432 \
+             -v="/var/postgresql/data:/var/postgresql/data:rw" \
+             -v="/var/postgresql/logs:/var/postgresql/logs:rw" \
+             -e PGDATA=/var/postgresql/data -d "fixate/postgresql:9.3")
 Start up:
 $ CONTAINER=$(docker start fixate_postgres)
 Get the IP:
