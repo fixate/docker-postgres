@@ -1,10 +1,10 @@
-# Dockerfile for Postgres 9.3 on Ubuntu (TAGS: 12.04)
+# Dockerfile for Postgres 9.3 on Ubuntu 14.04 (TAGS: 9.3)
 
 [Docker index](https://index.docker.io/u/fixate/postgres/)
 
 **Notes:**
 
- - Creates a superuser called `docker` with password 'password'.
+ - Creates a superuser called `fixate` with password 'password'.
  - Postgres data is decoupled from the image in a `/data` volume.
 
 ### Next steps
