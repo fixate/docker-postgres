@@ -28,7 +28,9 @@ $ IP=`$(docker inspect -format='{{ .NetworkSettings.IPAddress }}' $CONTAINER )
 Access the database in a container:
 
 ```shell
+# Check if running and get the port
+docker ps 
 # Connect using IP
-$ psql -U docker -h $IP -p 5432 template1
+$ psql -U docker -h $IP -p [your port] template1
 (password: password)
 ```
