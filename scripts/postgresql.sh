@@ -18,9 +18,9 @@ if [ ! "$(ls -A $PGDATA)" ]; then
   su postgres -c "cp -R /var/lib/postgresql/9.3/main/* $PGDATA"
 
   /etc/init.d/postgresql start
-  su postgres -c 'createuser -d -r -s -l fixate' || true
+  su postgres -c 'createuser -d -r -s -l master' || true
   # Change this password or remove this user in production!
-  su postgres -c 'psql -c "ALTER USER fixate WITH PASSWORD '"'"'password'"'"'"' || true
+  su postgres -c 'psql -c "ALTER USER master WITH PASSWORD '"'"'password'"'"'"' || true
   /etc/init.d/postgresql stop
 else
   echo "Postgres data in $PGDATA"
