@@ -4,7 +4,7 @@
 
 **Notes:**
 
- - Creates a superuser called `fixate` with password 'password'.
+ - Creates a superuser called `docker` with password 'password'.
  - Postgres data is decoupled from the image in a `/data` volume.
 
 ### Next steps
