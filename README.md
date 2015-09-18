@@ -22,7 +22,7 @@ $ CONTAINER=$(docker run -d \
 Start up:
 $ CONTAINER=$(docker start postgres)
 Get the IP:
-$ IP=`$(docker inspect -format='{{ .NetworkSettings.IPAddress }}' $CONTAINER )
+$ IP=$(docker inspect -format='{{ .NetworkSettings.IPAddress }}' $CONTAINER )
 ```
 
 Access the database in a container:
